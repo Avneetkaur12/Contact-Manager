@@ -1,15 +1,16 @@
+//Validations
 function validateContactDetails(phone, email) {
-    const phoneRegex = /^[0-9]{10}$/;
+    const phoneNum = /^[0-9]{10}$/;
 
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailID = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     let errorMessage = '';
 
-    if (!phoneRegex.test(phone)) {
+    if (!phoneNum.test(phone)) {
         errorMessage += 'Invalid phone number. It must be a 10-digit number.\n';
     }
 
-    if (!emailRegex.test(email)) {
+    if (!emailID.test(email)) {
         errorMessage += 'Invalid email address.\n';
     }
 
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+//Function to fetch all the contacts
 async function getContacts() {
     try {
         const response = await fetch('http://localhost:8000/contact');
@@ -89,6 +91,7 @@ async function getContacts() {
     }
 }
 
+//Function to display All contacts
 function populateTable(contacts) {
     const tableBody = document.querySelector('#contactsTable tbody');
     tableBody.innerHTML = '';
@@ -108,6 +111,7 @@ function populateTable(contacts) {
     });
 }
 
+//Function to change the text of button while editing the contacts
 function toggleEdit(id, button) {
     const row = button.parentElement.parentElement;
     const inputs = row.querySelectorAll('input');
@@ -128,6 +132,7 @@ function toggleEdit(id, button) {
 
 }
 
+//Function to update contacts
 async function updateContact(id, inputs) {
     const updatedData = {};
     inputs.forEach(input => {
@@ -170,6 +175,7 @@ async function updateContact(id, inputs) {
     }
 }
 
+//Function to delete contacts
 async function deleteContact(id) {
     if (confirm('Are you sure you want to delete this contact?')) {
         try {
