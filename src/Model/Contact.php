@@ -8,6 +8,7 @@ use PDO;
 class Contact {
     private PDO $db;
 
+    /*Constructor that initializes the database connection and creates the contacts table if it doesn't exist.*/
     public function __construct() {
         $this->db = ConnectionFactory::getConnection();
         $this->createTableIfNotExists();
@@ -27,6 +28,7 @@ class Contact {
         $this->db->exec($sql);
     }
 
+    //Function to insert a contact into the database table
     public function createContact(string $name, string $phone, string $email, string $address): bool {
         $stmt = $this->db->prepare('INSERT INTO contacts (name, phone, email, address) VALUES (:name, :phone, :email, :address)');
         return $stmt->execute([
@@ -37,6 +39,7 @@ class Contact {
         ]);
     }
 
+    //Function to retrieve the contacts
     public function getContact(?int $id = null): array {
         if ($id === null) {
             $stmt = $this->db->prepare('SELECT * FROM contacts');
@@ -61,6 +64,7 @@ class Contact {
         }
     }
     
+    //Function to update the contacts
     public function updateContact(int $id, string $name, string $phone, string $email, string $address): bool {
         $stmt = $this->db->prepare('SELECT COUNT(*) FROM contacts WHERE id = :id');
         $stmt->execute([':id' => $id]);
@@ -80,6 +84,7 @@ class Contact {
         ]);
     }
 
+    //Function to delete contacts
     public function deleteContact(int $id): bool {
         $stmt = $this->db->prepare('SELECT COUNT(*) FROM contacts WHERE id = :id');
         $stmt->execute([':id' => $id]);
