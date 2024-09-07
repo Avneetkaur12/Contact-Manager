@@ -58,11 +58,11 @@ header ul li:hover {
 }
 
 body {
-    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     background-color: #f9f9f9;
 }
 
+/*Designing of Form*/
 #contact-form {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -160,6 +160,7 @@ button[type="submit"]:hover {
     color: #333;
 }
 
+/*Designing of Table displaying all contacts*/
 table {
     width: 100%;
     border-collapse: collapse;
