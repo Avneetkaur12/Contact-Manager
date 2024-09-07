@@ -4,13 +4,16 @@ namespace App\Controller;
 use App\Model\Contact;
 use Exception;
 
+/*ContactController handles CRUD operations for contacts.*/
 class ContactController {
     private Contact $contactModel;
-
+    
+    /*Constructor to initialize the Contact model.*/
     public function __construct() {
         $this->contactModel = new Contact();
     }
 
+    //Function to create a new contact using the model
     public function createContact(string $name, string $phone, string $email, string $address): array {
         try {
             $result = $this->contactModel->createContact($name, $phone, $email, $address);
@@ -32,6 +35,7 @@ class ContactController {
         }
     }
 
+    //Function to retrieve a contact or all contacts 
     public function getContact(?int $id = null): array {
         try {
             if ($id === null) {
@@ -66,6 +70,7 @@ class ContactController {
         }
     }
     
+    //Function to update contact
     public function updateContact(int $id, string $name, string $phone, string $email, string $address): array {
         try {
             $result = $this->contactModel->updateContact($id, $name, $phone, $email, $address);
@@ -87,6 +92,7 @@ class ContactController {
         }
     }
 
+    //Function to delete a contact
     public function deleteContact(int $id): array {
         try {
             $result = $this->contactModel->deleteContact($id);
