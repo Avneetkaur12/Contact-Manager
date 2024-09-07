@@ -105,7 +105,7 @@ form input[type="email"] {
 form input[type="text"]:focus,
 form input[type="number"]:focus,
 form input[type="email"]:focus {
-    border-color: #0066cc;
+    border-color: #355768;
     outline: none;
 }
 
